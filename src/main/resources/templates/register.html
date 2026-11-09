@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Registration</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f7;
+            padding: 30px;
+        }
+
+        .container {
+            background: white;
+            max-width: 450px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .success {
+            color: green;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Student Registration</h2>
+
+    <p class="success" th:if="${successMessage}"
+       th:text="${successMessage}"></p>
+
+    <form th:action="@{/student/register}"
+          th:object="${student}"
+          method="post">
+
+        <label>First Name</label>
+        <input type="text" th:field="*{firstName}" required>
+
+        <label>Last Name</label>
+        <input type="text" th:field="*{lastName}" required>
+
+        <label>Email</label>
+        <input type="email" th:field="*{email}" required>
+
+        <label>Age</label>
+        <input type="number" th:field="*{age}"
+               min="19" required>
+
+        <button type="submit">Register Student</button>
+
+    </form>
+
+    <p>
+        <a th:href="@{/student/all}">View All Students</a>
+    </p>
+
+</div>
+
+</body>
+</html>
